@@ -52,7 +52,7 @@
 				if (navigator.platform.toLowerCase().search("win") >= 0) {
 					os = "win";
 				}
-				if (navigator.platform.toLowerCase().search("macPPC") >= 0) {
+				if (window.navigator.platform.toLowerCase().search("macppc") >= 0 || window.navigator.platform.toLowerCase().search("macintel") >= 0) {
 					os = "mac";
 				}
 				if(window.navigator.userAgent.toLowerCase().search("iphone") > 0){
