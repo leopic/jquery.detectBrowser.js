@@ -1,6 +1,9 @@
-/**
+/*
  * ------------------------------------------------------------------------------------------------------------
- * Browser sniffing, adds a class to the <body> tag depending on browser, version and platform
+ * Simple jQuery UA Spoofing
+ * @author  leopic
+ * @url     https://github.com/leopic/Simple-jQuery-UA-Spoofing
+ * @version 0.2
  * ------------------------------------------------------------------------------------------------------------
  */
  
@@ -15,13 +18,17 @@
 			if ($.browser.mozilla) {
 				browser = "ff";
 				var versionToClass = {
-					"1.8.1" : "20",
-					"1.9.2" : "36",
-					"1.9.1" : "35",
-					"1.9" : "30",
-					"2.0" : "40"
+					"181"  : "20",
+					"192"  : "36",
+					"191"  : "35",
+					"19"   : "30",
+					"20"   : "40",
+					"30"   : "50",
+					"40"   : "60",
+					"50"   : "70"
 				}
-				version = browser + versionToClass[$.browser.version];
+                var processedBrowser= $.browser.version.replace(/\./g,"").substring(0,3);
+                version = browser + versionToClass[processedBrowser];
 			}
 			// ie
 			if ($.browser.msie) {
@@ -41,18 +48,17 @@
 			}
 	
 			// os
-			if (navigator.platform && navigator.userAgent) {
+			if (navigator.platform || window.navigator.userAgent) {
 				if (navigator.platform.toLowerCase().search("win") >= 0) {
 					os = "win";
 				}
 				if (navigator.platform.toLowerCase().search("macPPC") >= 0) {
 					os = "mac";
 				}
-				if(navigator.userAgent.toLowerCase().search("iphone") >= 0){
-					os = "iphone";
+				if(window.navigator.userAgent.toLowerCase().search("iphone") > 0){
+					os = "idevice";
 				}
-			} 		
-		
+			}
 	        $(this).addClass(os + " " + browser + " " + version);
     	}
 };
