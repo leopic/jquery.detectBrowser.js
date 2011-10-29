@@ -52,12 +52,16 @@
 				if (navigator.platform.toLowerCase().search("win") >= 0) {
 					os = "win";
 				}
-				if (window.navigator.platform.toLowerCase().search("macppc") >= 0 || window.navigator.platform.toLowerCase().search("macintel") >= 0) {
+				if (window.navigator.platform.toLowerCase().search("macppc") >= 0
+				    || window.navigator.platform.toLowerCase().search("macintel") >= 0) {
 					os = "mac";
 				}
-				if(window.navigator.userAgent.toLowerCase().search("iphone") > 0){
+				if(window.navigator.userAgent.toLowerCase().search("iphone") >= 0){
 					os = "idevice";
 				}
+				if (window.navigator.platform.toLowerCase().search("linux") >= 0) {
+					os = "linux";
+				}				
 			}
 	        $(this).addClass(os + " " + browser + " " + version);
     	}
