@@ -23,9 +23,9 @@
 					"191"  : "35",
 					"19"   : "30",
 					"20"   : "40",
-					"30"   : "50",
-					"40"   : "60",
-					"50"   : "70"
+					"50"   : "50",
+					"60"   : "60",
+					"70"   : "70"
 				}
                 var processedBrowser= $.browser.version.replace(/\./g,"").substring(0,3);
                 version = browser + versionToClass[processedBrowser];
