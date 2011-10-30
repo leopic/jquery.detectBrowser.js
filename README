@@ -1,12 +1,19 @@
-Basic jQuery plugin for User Agent Spoofing.
+Simple-jQuery-UA-Spoofing
+=============
 
-It is not intended to be a replacement for
-Peter-Paul Koch's browser detect function,
-but much rather a compact plugin that only
-considers most used browsers.
+It is not intended to be a replacement for Peter-Paul Koch's browser detect function,
+but much rather a compact plugin that only considers most used browsers.
 
-Support:
-- Firefox
-- Chrome
-- Safari
-- IE
+Support
+-------------
+- OSs
+-- Windows
+-- Linux
+-- Mac
+-- iDevices (iPad, iPhone, iPod)
+
+- Browsers:
+-- Firefox
+-- Chrome
+-- Safari
+-- IE
