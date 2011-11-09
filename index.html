@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset=utf-8 />
+	<title>jquery.detectBrowser.js - demo page</title>
+    <link rel="stylesheet" href="http://twitter.github.com/bootstrap/1.4.0/bootstrap.min.css">
+    <style>
+        .classes-breakdown { margin-top: 20px; margin-bottom: 20px; list-style-type: none; }
+        .classes-breakdown li { display: block;}
+        #js-example { font-family: Courier, monospace; }
+        header { margin: 20px 0; }
+    </style>
+</head>
+<body>
+<div class="container">
+    <header>
+	    <h1>jquery.detectBrowser.js <small>for jQuery 1.0+</small></h1>
+	    <p>Check the source of your document, it should have 3 classes attached to the element you initialized the plugin with.</p>
+    </header>
+	<ul class="classes-breakdown row">
+		<li class="span5"><strong>OS:</strong> win, mac, lin, idevice.</li>
+		<li class="span5"><strong>Browser:</strong> ff, crm, sfr, wbk.</li>
+		<li class="span6"><strong>Browser + Version:</strong> a combination of the browser class and the current version.</li>
+	</ul>
+    <h2>How to use it?</h2>
+<pre class="prettyprint">
+&lt;!-- load jQuery --&gt;
+&lt;script type=&quot;text/javascript&quot; src=&quot;http://ajax.googleapis.com/ajax/libs/jquery/1.5.1/jquery.min.js&quot;&gt;&lt;/script&gt;
+&lt;!-- load the plugin --&gt;
+&lt;script type=&quot;text/javascript&quot; src=&quot;jquery.detectBrowser.js&quot;&gt;&lt;/script&gt;
+&lt;!-- add the plugin to your existing ready() event --&gt;
+&lt;script type=&quot;text/javascript&quot;&gt;
+$(document).ready(function() {
+    // adding the classes into the &lt;body&gt; tag
+    $(&quot;body&quot;).detectbrowser();
+});
+&lt;/script&gt;
+</pre>
+	<p>Your browser outputs: <span id="js-example"> </span>.</p>
+    <footer>
+        <p>Get the latest version at <a href="https://github.com/leopic/Simple-jQuery-UA-Spoofing">github</a></p>
+    </footer>
+</div>
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.5.1/jquery.min.js"></script>
+<script type="text/javascript" src="jquery.detectBrowser.js"></script>
+<script type="text/javascript">
+$(document).ready(function() {
+    // adding the classes into the <body> tag
+    $("body").detectBrowser();
+
+    // demo purposes only
+    $("#js-example").text($("body").attr("class"));
+});
+</script>
+</body>
+</html>
