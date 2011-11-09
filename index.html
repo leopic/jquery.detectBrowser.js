@@ -14,7 +14,7 @@
 <body>
 <div class="container">
     <header>
-	    <h1>Simple-jQuery-UA-Spoofing <small>for jQuery 1.4+</small></h1>
+	    <h1>jquery.detectBrowser.js <small>for jQuery 1.0+</small></h1>
 	    <p>Check the source of your document, it should have 3 classes attached to the element you initialized the plugin with.</p>
     </header>
 	<ul class="classes-breakdown row">
@@ -27,12 +27,12 @@
 &lt;!-- load jQuery --&gt;
 &lt;script type=&quot;text/javascript&quot; src=&quot;http://ajax.googleapis.com/ajax/libs/jquery/1.5.1/jquery.min.js&quot;&gt;&lt;/script&gt;
 &lt;!-- load the plugin --&gt;
-&lt;script type=&quot;text/javascript&quot; src=&quot;jquery.simple.ua.spoofing.js&quot;&gt;&lt;/script&gt;
+&lt;script type=&quot;text/javascript&quot; src=&quot;jquery.detectBrowser.js&quot;&gt;&lt;/script&gt;
 &lt;!-- add the plugin to your existing ready() event --&gt;
 &lt;script type=&quot;text/javascript&quot;&gt;
 $(document).ready(function() {
     // adding the classes into the &lt;body&gt; tag
-    $(&quot;body&quot;).detectbrowser();
+    $(&quot;body&quot;).detectBrowser();
 });
 &lt;/script&gt;
 </pre>
@@ -42,19 +42,14 @@ $(document).ready(function() {
     </footer>
 </div>
 <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.5.1/jquery.min.js"></script>
-<script type="text/javascript" src="jquery.simple.ua.spoofing.js"></script>
+<script type="text/javascript" src="jquery.detectBrowser.js"></script>
 <script type="text/javascript">
 $(document).ready(function() {
     // adding the classes into the <body> tag
-    $("body").detectbrowser();
+    $("body").detectBrowser();
 
     // demo purposes only
-    // initializing the plugin
-    $("#js-example").detectbrowser();
-    // getting the current classes
-    var current = $("#js-example").attr("class");
-    // printing them
-    $("#js-example").html(current);
+    $("#js-example").text($("body").attr("class"));
 });
 </script>
 </body>
