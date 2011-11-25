@@ -2,8 +2,8 @@
  * ------------------------------------------------------------------------------------------------------------
  * jquery.detectBrowser.js
  * @author  @leopyc
- * @url     http://github.com/leopic/Simple-jQuery-UA-Spoofing
- * @version 0.3
+ * @url     https://github.com/leopic/jquery.detectBrowser.js
+ * @version 0.4
  * ------------------------------------------------------------------------------------------------------------
  */
 
@@ -21,22 +21,19 @@
 
             // firefox
             if ($.browser.mozilla) {
-                browserName = "ff";
-                var versionToClass = {
-                    // gecko : firefox
-                    "181"  : "20",
-                    "191b" : "20",
-                    "192"  : "36",
-                    "191"  : "35",
-                    "19"   : "30",
-                    "190"  : "30",
-                    "20"   : "40"
-                }
-                if(parseInt($.browser.version) > 2){
-                    version = $.browser.version.replace(/\./g,"").substring(0,2);
+                var versionRegex = /firefox\/\d(\d)?.\d.\d/gi,
+                    browserName = "ff",
+                    storedName;
+
+                storedName = wn.userAgent.match(versionRegex).toString().replace(/\./g,"");
+                version = storedName.replace(/firefox\//gi,"");
+                
+                if(version.length >= 5){ // checking if the version is 10.something
+                    version = version.substring(0,3);
                 } else {
-                    version = versionToClass[$.browser.version.replace(/\./g,"").substring(0,4)];
+                    version = version.substring(0,2);
                 }
+
                 browserOsVersion = browserName + version;
             }
 
@@ -63,8 +60,7 @@
                 if (wn.platform.toLowerCase().search("win") >= 0) {
                     os = "win";
                 }
-                if (wn.platform.toLowerCase().search("macppc") >= 0
-                        || wn.platform.toLowerCase().search("macintel") >= 0) {
+                if (wn.platform.toLowerCase().search("mac") >= 0) {
                     os = "mac";
                 }
                 if (wn.userAgent.toLowerCase().search("iphone") >= 0){

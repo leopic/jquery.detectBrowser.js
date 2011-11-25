@@ -2,12 +2,12 @@
 <html lang="en">
 <head>
 	<meta charset=utf-8 />
-	<title>jquery.detectBrowser.js - demo page</title>
+	<title>jquery.detectBrowser.js</title>
     <link rel="stylesheet" href="http://twitter.github.com/bootstrap/1.4.0/bootstrap.min.css">
     <style>
         .classes-breakdown { margin-top: 20px; margin-bottom: 20px; list-style-type: none; }
         .classes-breakdown li { display: block;}
-        #js-example { font-family: Courier, monospace; }
+        #js-example { font-family: Courier, "Courier New", monospace; }
         header { margin: 20px 0; }
     </style>
 </head>
@@ -25,23 +25,23 @@
     <h2>How to use it?</h2>
 <pre class="prettyprint">
 &lt;!-- load jQuery --&gt;
-&lt;script type=&quot;text/javascript&quot; src=&quot;http://ajax.googleapis.com/ajax/libs/jquery/1.5.1/jquery.min.js&quot;&gt;&lt;/script&gt;
+&lt;script type=&quot;text/javascript&quot; src=&quot;http://code.jquery.com/jquery-latest.js&quot;&gt;&lt;/script&gt;
 &lt;!-- load the plugin --&gt;
 &lt;script type=&quot;text/javascript&quot; src=&quot;jquery.detectBrowser.js&quot;&gt;&lt;/script&gt;
 &lt;!-- add the plugin to your existing ready() event --&gt;
 &lt;script type=&quot;text/javascript&quot;&gt;
 $(document).ready(function() {
     // adding the classes into the &lt;body&gt; tag
-    $(&quot;body&quot;).detectbrowser();
+    $(&quot;body&quot;).detectBrowser();
 });
 &lt;/script&gt;
 </pre>
 	<p>Your browser outputs: <span id="js-example"> </span>.</p>
     <footer>
-        <p>Get the latest version at <a href="http://github.com/leopic/jquery.detectBrowser.js">github</a></p>
+        <p>Get the latest version at <a href="https://github.com/leopic/jquery.detectBrowser.js">Github</a>. <small>By <a target="_blank" href="http://leonardopicado.com">Leonardo Picado</a> and <a href="http://carloszs.com/" target="_blank">Carlos Zuñiga</a></small></p>
     </footer>
 </div>
-<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.5.1/jquery.min.js"></script>
+<script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
 <script type="text/javascript" src="jquery.detectBrowser.js"></script>
 <script type="text/javascript">
 $(document).ready(function() {
