@@ -2,7 +2,7 @@
  * ------------------------------------------------------------------------------------------------------------
  * jquery.detectBrowser.js
  * @author  @leopyc
- * @url     http://github.com/leopic/Simple-jQuery-UA-Spoofing
+ * @url     https://github.com/leopic/jquery.detectBrowser.js
  * @version 0.4
  * ------------------------------------------------------------------------------------------------------------
  */
