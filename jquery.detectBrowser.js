@@ -3,7 +3,7 @@
  * jquery.detectBrowser.js
  * @author  @leopyc
  * @url     https://github.com/leopic/jquery.detectBrowser.js
- * @version 0.4
+ * @version 0.5
  * ------------------------------------------------------------------------------------------------------------
  */
 
@@ -21,14 +21,13 @@
 
             // firefox
             if ($.browser.mozilla) {
-                var versionRegex = /firefox\/\d(\d)?.\d.\d/gi,
+                var versionRegex = /firefox\/\d\d?.\d?.\d?/gi,
                     browserName = "ff",
-                    storedName;
+                    storedName = window.navigator.userAgent.match(versionRegex).toString().replace(/\./g,"");
 
-                storedName = wn.userAgent.match(versionRegex).toString().replace(/\./g,"");
                 version = storedName.replace(/firefox\//gi,"");
-                
-                if(version.length >= 5){ // checking if the version is 10.something
+
+                if((version.length > 3) && (version.indexOf("1") == 0)){ // checking if the version is 10.something
                     version = version.substring(0,3);
                 } else {
                     version = version.substring(0,2);
