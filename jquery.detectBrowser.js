@@ -3,7 +3,7 @@
  * jquery.detectBrowser.js
  * @author  @leopyc
  * @url     https://github.com/leopic/jquery.detectBrowser.js
- * @version 0.5
+ * @version 0.6
  * ------------------------------------------------------------------------------------------------------------
  */
 
@@ -14,6 +14,8 @@
 
             var self = this,
                 wn = window.navigator,
+                platform = wn.platform,
+                userAgent = wn.userAgent,
                 browserOsVersion,
                 browserName,
                 version,
@@ -23,7 +25,7 @@
             if ($.browser.mozilla) {
                 var versionRegex = /firefox\/\d\d?.\d?.\d?/gi,
                     browserName = "ff",
-                    storedName = window.navigator.userAgent.match(versionRegex).toString().replace(/\./g,"");
+                    storedName = userAgent.match(versionRegex).toString().replace(/\./g,"");
 
                 version = storedName.replace(/firefox\//gi,"");
 
@@ -44,28 +46,29 @@
 
             // safari and chrome
             if ($.browser.webkit) {
-                if(navigator.vendor.toLowerCase().search("apple") >= 0){
+                browserName = "wbk";
+                
+                if(wn.vendor.toLowerCase().search("apple") >= 0){
                     browserName = "sfr";
-                } else if(navigator.vendor.toLowerCase().search("google") >= 0) {
+                } else if(wn.vendor.toLowerCase().search("google") >= 0) {
                     browserName = "crm";
-                } else {
-                    browserName = "wbk";
                 }
+                
                 browserOsVersion = browserName + $.browser.version.substr(0, 3);
             }
 
             // os
-            if (wn.platform || wn.userAgent) {
-                if (wn.platform.toLowerCase().search("win") >= 0) {
+            if (platform || userAgent) {
+                if (platform.toLowerCase().search("win") >= 0) {
                     os = "win";
                 }
-                if (wn.platform.toLowerCase().search("mac") >= 0) {
+                if (platform.toLowerCase().search("mac") >= 0) {
                     os = "mac";
                 }
-                if (wn.userAgent.toLowerCase().search("iphone") >= 0){
+                if (userAgent.toLowerCase().search("iphone") >= 0){
                     os = "idevice";
                 }
-                if (wn.platform.toLowerCase().search("linux") >= 0) {
+                if (platform.toLowerCase().search("linux") >= 0) {
                     os = "lin";
                 }
             }
