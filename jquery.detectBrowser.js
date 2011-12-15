@@ -3,7 +3,7 @@
  * jquery.detectBrowser.js
  * @author  @leopyc
  * @url     https://github.com/leopic/jquery.detectBrowser.js
- * @version 0.6
+ * @version 0.6alpha
  * ------------------------------------------------------------------------------------------------------------
  */
 
