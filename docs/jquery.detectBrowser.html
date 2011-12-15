@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="content-type" content="text/html;charset=utf-8">
+  <title>jquery.detectBrowser.js</title>
+  <link rel="stylesheet" href="http://jashkenas.github.com/docco/resources/docco.css">
+</head>
+<body>
+<div id='container'>
+  <div id="background"></div>
+  <table cellspacing=0 cellpadding=0>
+  <thead>
+    <tr>
+      <th class=docs><h1>jquery.detectBrowser.js</h1></th>
+      <th class=code></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr id='section-1'>
+      <td class=docs>
+        <div class="pilwrap">
+          <a class="pilcrow" href="#section-1">&#182;</a>
+        </div>
+        
+      </td>
+      <td class=code>
+        <div class='highlight'><pre><span class="cm">/*</span>
+<span class="cm"> * ------------------------------------------------------------------------------------------------------------</span>
+<span class="cm"> * jquery.detectBrowser.js</span>
+<span class="cm"> * @author  @leopyc</span>
+<span class="cm"> * @url     https://github.com/leopic/jquery.detectBrowser.js</span>
+<span class="cm"> * @version 0.6alpha</span>
+<span class="cm"> * ------------------------------------------------------------------------------------------------------------</span>
+<span class="cm"> */</span>
+
+<span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">$</span><span class="p">){</span>
+    <span class="nx">$</span><span class="p">.</span><span class="nx">fn</span><span class="p">.</span><span class="nx">detectBrowser</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+
+        <span class="k">if</span> <span class="p">(</span><span class="nx">$</span><span class="p">.</span><span class="nx">browser</span><span class="p">)</span> <span class="p">{</span></pre></div>
+      </td>
+    </tr>
+    <tr id='section-2'>
+      <td class=docs>
+        <div class="pilwrap">
+          <a class="pilcrow" href="#section-2">&#182;</a>
+        </div>
+        <p>some house cleaning</p>
+      </td>
+      <td class=code>
+        <div class='highlight'><pre>            <span class="kd">var</span> <span class="nx">self</span> <span class="o">=</span> <span class="k">this</span><span class="p">,</span>
+                <span class="nx">wn</span> <span class="o">=</span> <span class="nb">window</span><span class="p">.</span><span class="nx">navigator</span><span class="p">,</span>
+                <span class="nx">platform</span> <span class="o">=</span> <span class="nx">wn</span><span class="p">.</span><span class="nx">platform</span><span class="p">,</span>
+                <span class="nx">userAgent</span> <span class="o">=</span> <span class="nx">wn</span><span class="p">.</span><span class="nx">userAgent</span><span class="p">,</span>
+                <span class="nx">browserOsVersion</span><span class="p">,</span>
+                <span class="nx">browserName</span><span class="p">,</span>
+                <span class="nx">version</span><span class="p">,</span>
+                <span class="nx">os</span><span class="p">;</span></pre></div>
+      </td>
+    </tr>
+    <tr id='section-3'>
+      <td class=docs>
+        <div class="pilwrap">
+          <a class="pilcrow" href="#section-3">&#182;</a>
+        </div>
+        <p>taking care of firefox</p>
+      </td>
+      <td class=code>
+        <div class='highlight'><pre>            <span class="k">if</span> <span class="p">(</span><span class="nx">$</span><span class="p">.</span><span class="nx">browser</span><span class="p">.</span><span class="nx">mozilla</span><span class="p">)</span> <span class="p">{</span>
+                <span class="kd">var</span> <span class="nx">versionRegex</span> <span class="o">=</span> <span class="sr">/firefox\/\d\d?.\d?.\d?/gi</span><span class="p">,</span>
+                    <span class="nx">browserName</span> <span class="o">=</span> <span class="s2">&quot;ff&quot;</span><span class="p">,</span>
+                    <span class="nx">storedName</span> <span class="o">=</span> <span class="nx">userAgent</span><span class="p">.</span><span class="nx">match</span><span class="p">(</span><span class="nx">versionRegex</span><span class="p">).</span><span class="nx">toString</span><span class="p">().</span><span class="nx">replace</span><span class="p">(</span><span class="sr">/\./g</span><span class="p">,</span><span class="s2">&quot;&quot;</span><span class="p">);</span>
+
+                <span class="nx">version</span> <span class="o">=</span> <span class="nx">storedName</span><span class="p">.</span><span class="nx">replace</span><span class="p">(</span><span class="sr">/firefox\//gi</span><span class="p">,</span><span class="s2">&quot;&quot;</span><span class="p">);</span></pre></div>
+      </td>
+    </tr>
+    <tr id='section-4'>
+      <td class=docs>
+        <div class="pilwrap">
+          <a class="pilcrow" href="#section-4">&#182;</a>
+        </div>
+        <p>newer versions of firefox require an extra char</p>
+      </td>
+      <td class=code>
+        <div class='highlight'><pre>                <span class="k">if</span><span class="p">((</span><span class="nx">version</span><span class="p">.</span><span class="nx">length</span> <span class="o">&gt;</span> <span class="mi">3</span><span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="p">(</span><span class="nx">version</span><span class="p">.</span><span class="nx">indexOf</span><span class="p">(</span><span class="s2">&quot;1&quot;</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)){</span> <span class="c1">// checking if the version is 10.something</span>
+                    <span class="nx">version</span> <span class="o">=</span> <span class="nx">version</span><span class="p">.</span><span class="nx">substring</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">3</span><span class="p">);</span>
+                <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+                    <span class="nx">version</span> <span class="o">=</span> <span class="nx">version</span><span class="p">.</span><span class="nx">substring</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">2</span><span class="p">);</span>
+                <span class="p">}</span></pre></div>
+      </td>
+    </tr>
+    <tr id='section-5'>
+      <td class=docs>
+        <div class="pilwrap">
+          <a class="pilcrow" href="#section-5">&#182;</a>
+        </div>
+        <p>that&rsquo;s all for firefox, moving on</p>
+      </td>
+      <td class=code>
+        <div class='highlight'><pre>                <span class="nx">browserOsVersion</span> <span class="o">=</span> <span class="nx">browserName</span> <span class="o">+</span> <span class="nx">version</span><span class="p">;</span>
+            <span class="p">}</span></pre></div>
+      </td>
+    </tr>
+    <tr id='section-6'>
+      <td class=docs>
+        <div class="pilwrap">
+          <a class="pilcrow" href="#section-6">&#182;</a>
+        </div>
+        <p>ie</p>
+      </td>
+      <td class=code>
+        <div class='highlight'><pre>            <span class="k">if</span> <span class="p">(</span><span class="nx">$</span><span class="p">.</span><span class="nx">browser</span><span class="p">.</span><span class="nx">msie</span><span class="p">)</span> <span class="p">{</span>
+                <span class="nx">browserName</span> <span class="o">=</span> <span class="s2">&quot;ie&quot;</span><span class="p">;</span>
+                <span class="nx">browserOsVersion</span> <span class="o">=</span> <span class="nx">browserName</span> <span class="o">+</span> <span class="nx">$</span><span class="p">.</span><span class="nx">browser</span><span class="p">.</span><span class="nx">version</span><span class="p">.</span><span class="nx">substr</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>
+            <span class="p">}</span></pre></div>
+      </td>
+    </tr>
+    <tr id='section-7'>
+      <td class=docs>
+        <div class="pilwrap">
+          <a class="pilcrow" href="#section-7">&#182;</a>
+        </div>
+        <p>safari and chrome</p>
+      </td>
+      <td class=code>
+        <div class='highlight'><pre>            <span class="k">if</span> <span class="p">(</span><span class="nx">$</span><span class="p">.</span><span class="nx">browser</span><span class="p">.</span><span class="nx">webkit</span><span class="p">)</span> <span class="p">{</span>
+                <span class="nx">browserName</span> <span class="o">=</span> <span class="s2">&quot;wbk&quot;</span><span class="p">;</span>
+                
+                <span class="k">if</span><span class="p">(</span><span class="nx">wn</span><span class="p">.</span><span class="nx">vendor</span><span class="p">.</span><span class="nx">toLowerCase</span><span class="p">().</span><span class="nx">search</span><span class="p">(</span><span class="s2">&quot;apple&quot;</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">){</span>
+                    <span class="nx">browserName</span> <span class="o">=</span> <span class="s2">&quot;sfr&quot;</span><span class="p">;</span>
+                <span class="p">}</span> <span class="k">else</span> <span class="k">if</span><span class="p">(</span><span class="nx">wn</span><span class="p">.</span><span class="nx">vendor</span><span class="p">.</span><span class="nx">toLowerCase</span><span class="p">().</span><span class="nx">search</span><span class="p">(</span><span class="s2">&quot;google&quot;</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+                    <span class="nx">browserName</span> <span class="o">=</span> <span class="s2">&quot;crm&quot;</span><span class="p">;</span>
+                <span class="p">}</span>
+                
+                <span class="nx">browserOsVersion</span> <span class="o">=</span> <span class="nx">browserName</span> <span class="o">+</span> <span class="nx">$</span><span class="p">.</span><span class="nx">browser</span><span class="p">.</span><span class="nx">version</span><span class="p">.</span><span class="nx">substr</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">3</span><span class="p">);</span>
+            <span class="p">}</span></pre></div>
+      </td>
+    </tr>
+    <tr id='section-8'>
+      <td class=docs>
+        <div class="pilwrap">
+          <a class="pilcrow" href="#section-8">&#182;</a>
+        </div>
+        <p>os</p>
+
+      </td>
+      <td class=code>
+        <div class='highlight'><pre>            <span class="k">if</span> <span class="p">(</span><span class="nx">platform</span> <span class="o">||</span> <span class="nx">userAgent</span><span class="p">)</span> <span class="p">{</span>
+                <span class="k">if</span> <span class="p">(</span><span class="nx">platform</span><span class="p">.</span><span class="nx">toLowerCase</span><span class="p">().</span><span class="nx">search</span><span class="p">(</span><span class="s2">&quot;win&quot;</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+                    <span class="nx">os</span> <span class="o">=</span> <span class="s2">&quot;win&quot;</span><span class="p">;</span>
+                <span class="p">}</span>
+                <span class="k">if</span> <span class="p">(</span><span class="nx">platform</span><span class="p">.</span><span class="nx">toLowerCase</span><span class="p">().</span><span class="nx">search</span><span class="p">(</span><span class="s2">&quot;mac&quot;</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+                    <span class="nx">os</span> <span class="o">=</span> <span class="s2">&quot;mac&quot;</span><span class="p">;</span>
+                <span class="p">}</span>
+                <span class="k">if</span> <span class="p">(</span><span class="nx">userAgent</span><span class="p">.</span><span class="nx">toLowerCase</span><span class="p">().</span><span class="nx">search</span><span class="p">(</span><span class="s2">&quot;iphone&quot;</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">){</span>
+                    <span class="nx">os</span> <span class="o">=</span> <span class="s2">&quot;idevice&quot;</span><span class="p">;</span>
+                <span class="p">}</span>
+                <span class="k">if</span> <span class="p">(</span><span class="nx">platform</span><span class="p">.</span><span class="nx">toLowerCase</span><span class="p">().</span><span class="nx">search</span><span class="p">(</span><span class="s2">&quot;linux&quot;</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+                    <span class="nx">os</span> <span class="o">=</span> <span class="s2">&quot;lin&quot;</span><span class="p">;</span>
+                <span class="p">}</span>
+            <span class="p">}</span>
+
+            <span class="nx">self</span><span class="p">.</span><span class="nx">addClass</span><span class="p">(</span><span class="nx">os</span> <span class="o">+</span> <span class="s2">&quot; &quot;</span> <span class="o">+</span> <span class="nx">browserName</span> <span class="o">+</span> <span class="s2">&quot; &quot;</span> <span class="o">+</span> <span class="nx">browserOsVersion</span><span class="p">);</span>
+        <span class="p">}</span>
+    <span class="p">};</span>
+<span class="p">})(</span><span class="nx">jQuery</span><span class="p">);</span></pre></div>
+      </td>
+    </tr>
+  </table>
+</div>
+</body>

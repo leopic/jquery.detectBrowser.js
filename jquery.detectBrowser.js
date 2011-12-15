@@ -12,6 +12,7 @@
 
         if ($.browser) {
 
+            // some house cleaning
             var self = this,
                 wn = window.navigator,
                 platform = wn.platform,
@@ -21,7 +22,7 @@
                 version,
                 os;
 
-            // firefox
+            // taking care of firefox
             if ($.browser.mozilla) {
                 var versionRegex = /firefox\/\d\d?.\d?.\d?/gi,
                     browserName = "ff",
@@ -29,12 +30,14 @@
 
                 version = storedName.replace(/firefox\//gi,"");
 
+                // newer versions of firefox require an extra char
                 if((version.length > 3) && (version.indexOf("1") == 0)){ // checking if the version is 10.something
                     version = version.substring(0,3);
                 } else {
                     version = version.substring(0,2);
                 }
 
+                // that's all for firefox, moving on
                 browserOsVersion = browserName + version;
             }
 
