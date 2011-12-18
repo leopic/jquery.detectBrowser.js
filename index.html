@@ -17,40 +17,10 @@
 	    <h1>jquery.detectBrowser.js <small>for jQuery 1.0+</small></h1>
 	    <p>Check the source of your document, it should have 3 classes attached to the element you initialized the plugin with.</p>
     </header>
-	<ul class="classes-breakdown row">
-		<li class="span5"><strong>OS:</strong> win, mac, lin, idevice.</li>
-		<li class="span5"><strong>Browser:</strong> ff, crm, sfr, wbk.</li>
-		<li class="span6"><strong>Browser + Version:</strong> a combination of the browser class and the current version.</li>
-	</ul>
-    <h2>How to use it?</h2>
-<pre class="prettyprint">
-&lt;!-- load jQuery --&gt;
-&lt;script type=&quot;text/javascript&quot; src=&quot;http://code.jquery.com/jquery-latest.js&quot;&gt;&lt;/script&gt;
-&lt;!-- load the plugin --&gt;
-&lt;script type=&quot;text/javascript&quot; src=&quot;jquery.detectBrowser.min.js&quot;&gt;&lt;/script&gt;
-&lt;!-- add the plugin to your existing ready() event --&gt;
-&lt;script type=&quot;text/javascript&quot;&gt;
-$(document).ready(function() {
-    // adding the classes into the &lt;body&gt; tag
-    $(&quot;body&quot;).detectBrowser();
-});
-&lt;/script&gt;
-</pre>
-	<p>Your browser outputs: <span id="js-example"></span>.</p>
-    <footer>
-        <p>Get the latest version at <a href="https://github.com/leopic/jquery.detectBrowser.js">Github</a>. <small>By <a target="_blank" href="http://leonardopicado.com">Leonardo Picado</a> and <a href="http://carloszs.com/" target="_blank">Carlos Zuñiga</a></small></p>
-    </footer>
 </div>
-<script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
-<script type="text/javascript" src="jquery.detectBrowser.min.js"></script>
+<script type="text/javascript" src="jquery.detectBrowser.sansjQuery.js"></script>
 <script type="text/javascript">
-$(document).ready(function() {
-    // adding the classes into the <body> tag
-    $("body").detectBrowser();
-
-    // demo purposes only
-    $("#js-example").text($("body").attr("class"));
-});
+    window.document.body.onload = bt();
 </script>
 </body>
 </html>
