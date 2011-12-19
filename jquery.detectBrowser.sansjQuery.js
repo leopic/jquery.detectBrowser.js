@@ -74,8 +74,8 @@ var bt = function(){
 
     combinedClasses = os + ' ' + browserName + ' ' + browserOsVersion;
     
-    if(el.hasAttribute('class')){
-        combinedClasses += ' ' + el.getAttribute('class');
+    if(el.className != null){
+        combinedClasses += ' ' + el.className;
     }
     
     el.setAttribute('class', combinedClasses);
