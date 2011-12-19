@@ -1,19 +1,10 @@
-/*
- * ------------------------------------------------------------------------------------------------------------
- * jquery.detectBrowser.js
- * @author  @leopyc
- * @url     https://github.com/leopic/jquery.detectBrowser.js
- * @version 0.6alpha
- * ------------------------------------------------------------------------------------------------------------
- */
-
-
 var bt = function(){
 
     var el = document.getElementsByTagName('body')[0],
         wn = window.navigator,
         platform = wn.platform,
-        userAgent = wn.userAgent.toString(),
+        userAgent = wn.userAgent,
+        combinedClasses,
         browserOsVersion,
         browserName,
         version,
@@ -22,11 +13,11 @@ var bt = function(){
     // firefox
     if (userAgent.toLowerCase().indexOf('firefox',0) != -1) {
         var versionRegex = /firefox\/\d\d?.\d?.\d?/gi,
-            browserName = "ff",
-            storedName = userAgent.match(versionRegex).toString().replace(/\./g,""),
-            version = storedName.replace(/firefox\//gi,"");
+            browserName = 'ff',
+            storedName = userAgent.match(versionRegex).toString().replace(/\./g,''),
+            version = storedName.replace(/firefox\//gi,'');
 
-        if((version.indexOf("1") == 0) && (version.length > 3)){ // checking if the version is 10.something
+        if((version.indexOf('1') == 0) && (version.length > 3)){ // checking if the version is 10.something
             version = version.substring(0,3);
         } else {
             version = version.substring(0,2);
@@ -36,54 +27,57 @@ var bt = function(){
     }
 
     // ie
-    /*if ($.browser.msie) {
-     browserName = "ie";
-     browserOsVersion = browserName + $.browser.version.substr(0, 1);
-     os = win;
-     }*/
+    if (userAgent.toLowerCase().indexOf('msie',0) != -1) {
+        browserName = 'ie',
+        os = 'win';
+        storedName = userAgent.match(/msie[ ]\d{1}/i).toString();
+        version = storedName.replace(/msie./i,'');
+        
+        browserOsVersion = browserName + version;
+     }
 
     // safari and chrome
     if (userAgent.toLowerCase().indexOf('webkit',0) != -1) {
         var versionRegex,
-            browserName = "wbk";
+            browserName = 'wbk';
 
-        if(wn.vendor.toLowerCase().search("apple") >= 0){
-            browserName = "sfr";
+        if(wn.vendor.toLowerCase().search('apple') >= 0){
+            browserName = 'sfr';
             versionRegex = /safari\/\d\d?.\d?.\d?/gi,
-                storedName = userAgent.match(versionRegex).toString().replace(/\./g,""),
-                version = storedName.replace(/firefox\//gi,"");
-        } else if(wn.vendor.toLowerCase().search("google") >= 0) {
-            browserName = "crm";
+            storedName = userAgent.match(versionRegex).toString().replace(/\./g,''),
+            version = storedName.replace(/firefox\//gi,'');
+        } else if(wn.vendor.toLowerCase().search('google') >= 0) {
+            browserName = 'crm';
             versionRegex = /chrome\/\d\d?.\d?.\d?/gi,
-                storedName = userAgent.match(versionRegex).toString().replace(/\./g,""),
-                version = storedName.replace(/chrome\//gi,"").substring(0,3);
+            storedName = userAgent.match(versionRegex).toString().replace(/\./g,''),
+            version = storedName.replace(/chrome\//gi,'').substring(0,3);
         }
 
         browserOsVersion = browserName + version;
     }
 
     // os
-    if (platform || userAgent) {
-        if (platform.toLowerCase().search("win") >= 0) {
-            os = "win";
+    if (platform || userAgent && os.length > 0) {
+        if (platform.toLowerCase().search('win') >= 0) {
+            os = 'win';
         }
-        if (platform.toLowerCase().search("mac") >= 0) {
-            os = "mac";
+        if (platform.toLowerCase().search('mac') >= 0) {
+            os = 'mac';
         }
-        if (userAgent.toLowerCase().search("iphone") >= 0){
-            os = "idevice";
+        if (userAgent.toLowerCase().search('iphone') >= 0){
+            os = 'idevice';
         }
-        if (platform.toLowerCase().search("linux") >= 0) {
-            os = "lin";
+        if (platform.toLowerCase().search('linux') >= 0) {
+            os = 'lin';
         }
     }
 
+    combinedClasses = os + ' ' + browserName + ' ' + browserOsVersion;
+    
     if(el.hasAttribute('class')){
-        var currentClass = self.hasAttribute('class');
-
-        el.setAttribute('class',currentClass + ' ' + os + ' ' + browserName + ' ' + browserOsVersion);
-    } else {
-        el.setAttribute('class',os + ' ' + browserName + ' ' + browserOsVersion);
+        combinedClasses += ' ' + el.getAttribute('class');
     }
+    
+    el.setAttribute('class', combinedClasses);
 
 }
