@@ -1,86 +1,64 @@
-var browserDetect = function(){
-
-    var el = document.getElementsByTagName('body')[0],
-        wn = window.navigator,
-        platform = wn.platform.toString().toLowerCase(),
-        userAgent = wn.userAgent.toLowerCase(),
-        versionRegex,
-        storedName,
-        combinedClasses,
-        browserOsVersion,
-        browserName,
-        version,
-        vendor,
+function getOs() {
+    var platform = window.navigator.platform || '',
         os;
 
-    // firefox
-    if (userAgent.indexOf('firefox',0) !== -1) {
-        versionRegex = /firefox\/\d\d?\.\d/;
-        browserName = 'ff';
-        storedName = userAgent.match(versionRegex).toString().replace(/\./g,'');
-        version = storedName.replace(/firefox\//,'');
-
-        if((version.indexOf('1') === 0) && (version.length > 3)){ // checking if the version is 1\d.something
-            version = version.substring(0,3);
-        } else {
-            version = version.substring(0,2);
-        }
-
-        browserOsVersion = browserName + version;
-    }
-
-    // ie
-    if (userAgent.indexOf('msie',0) !== -1) {
-        browserName = 'ie';
+    if (/win/i.test(platform)) {
         os = 'win';
-        storedName = userAgent.match(/msie[ ]\d{1}/).toString();
-        version = storedName.replace(/msie[ ]/,'');
-
-        browserOsVersion = browserName + version;
+    }
+    if (/mac/i.test(platform)) {
+        os = 'mac';
     }
 
-    // safari and chrome
-    if (userAgent.indexOf('webkit',0) !== -1) {
-        browserName = 'wbk';
-        vendor = wn.vendor.toLowerCase(); // not a standard property
+    return os;
+}
+;
 
-        if(vendor.search('apple') >= 0){
-            browserName = 'sfr';
-            versionRegex = /version\/\d[.]\d/;
-            storedName = userAgent.match(versionRegex).toString();
-            version = storedName.replace(/version\//,'').replace('.','');
-        } else if(vendor.search('google') >= 0) {
-            browserName = 'crm';
-            versionRegex = /chrome\/\d\d?\.\d?/;
-            storedName = userAgent.match(versionRegex).toString().replace('.','');
-            version = storedName.replace(/chrome\//,'').substring(0,3);
-        }
+function getBrowserName() {
+    var wn = window.navigator,
+        userAgent = wn.userAgent,
+        vendor = wn.vendor || '',
+        browserName;
 
-        browserOsVersion = browserName + version;
+    if (/firefox/i.test(userAgent)) {
+        browserName = 'ff';
+    }
+    if (/msie/i.test(userAgent)) {
+        browserName = 'ie';
+    }
+    if (/apple/i.test(vendor)) {
+        browserName = 'sfr';
+    }
+    if (/google/i.test(vendor)) {
+        browserName = 'crm';
     }
 
-    // os
-    if (!os) {
-        if (platform.search('win') >= 0) {
-            os = 'win';
-        }
-        if (platform.search('mac') >= 0) {
-            os = 'mac';
-        }
-        if (userAgent.search('iphone') >= 0){
-            os = 'idevice';
-        }
-        if (platform.search('linux') >= 0) {
-            os = 'lin';
-        }
+
+    return browserName;
+}
+;
+
+function getVersion() {
+    var userAgent = window.navigator.userAgent.toLowerCase(),
+        storedName,
+        version = '',
+        browserName = getBrowserName(),
+        regexpMap = { ff:  / Firefox\/(\d+\.\d+)/i,
+                      ie:  / MSIE (\d+\.\d+);/i,
+                      sfr: / Version\/(\d+\.\d+) /i,
+                      crm: / Chrome\/(\d+\.\d+)\./i },
+        versionRegex = regexpMap[browserName];
+
+    if (versionRegex){
+        storedName = userAgent.match(versionRegex);
+        version = storedName && storedName[1];
     }
 
-    combinedClasses = os + ' ' + browserName + ' ' + browserOsVersion;
+    return version.replace(/\./, '');
+}
+;
 
-    if(el.className){
-        combinedClasses += ' ' + el.className;
-    }
+var browserDetect = function() {
 
-    el.setAttribute('class', combinedClasses);
+    document.body.className += ' ' + getOs() + ' ' + getBrowserName() + ' ' + getBrowserName() + getVersion();
 
 };
